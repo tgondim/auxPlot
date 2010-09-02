@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="br.com.tg.entidades.Endereco" table="ENDERECO" lazy="false" >
+		<id name="id" column="PESSOA_ID" type="java.lang.Integer" unsaved-value="0">
+			<generator class="increment">
+				<param name="sequence">GEN_ENDERECO_ID</param>
+			</generator>
+		</id>
+		<property name="logradouro" column="LOGRADOURO"/>
+		<property name="numero" column="NUMERO"/>
+		<property name="bairro" column="BAIRRO"/>
+		<property name="complemento" column="COMPLEMENTO"/>
+		<property name="cidade" column="CIDADE"/>
+		<property name="uf" column="UF"/>
+		<property name="cep" column="CEP"/>
+		<property name="email" column="EMAIL"/>
+	</class>
+	
+</hibernate-mapping>  

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="br.com.tg.entidades.Pessoa" table="PESSOA" lazy="false">
+		<id name="id" column="ID" type="java.lang.Integer" unsaved-value="0">
+			<generator class="increment">
+				<param name="sequence">GEN_PESSOA_ID</param>
+			</generator>
+		</id>
+
+		<property name="nome" column="NOME" not-null="true" />
+		
+     	<many-to-one name="endereco" column="ENDERECO_ID" class="br.com.tg.entidades.Endereco" not-null="true" unique="true" cascade="all-delete-orphan" lazy="false"/>  
+
+	    <bag name="telefones" table="PESSOA_TELEFONE" lazy="false" cascade="all-delete-orphan">
+	        <key column="PESSOA_ID"/>
+	        <many-to-many column="TELEFONE_ID" unique="true" class="br.com.tg.entidades.Telefone" lazy="false"/>
+	    </bag>
+
+		<many-to-one name="statusPessoa" column="STATUS_PESSOA_ID"
+			class="br.com.tg.entidades.StatusPessoa" cascade="save-update" update="true" lazy="false"/>
+
+		<many-to-one name="tipoPessoa" column="TIPO_PESSOA_ID"
+			class="br.com.tg.entidades.TipoPessoa" cascade="save-update" update="true" lazy="false"/>
+
+		<property name="dataCadastro" column="DATA_CADASTRO" />
+
+		<many-to-one name="usuarioCadastro" column="USUARIO_CADASTRO_ID"
+			class="br.com.tg.entidades.Usuario" cascade="save-update" update="true" lazy="false"/>
+
+		<property name="dataAlteracao" column="DATA_ALTERACAO" />
+
+		<many-to-one name="usuarioAlteracao" column="USUARIO_ALTERACAO_ID"
+			class="br.com.tg.entidades.Usuario" cascade="save-update" update="true" lazy="false"/>
+
+		<!--Sub-Classe PessoaFisica -->
+		<joined-subclass name="br.com.tg.entidades.PessoaFisica"
+			table="PESSOA_FISICA" lazy="false" >
+			<key column="PESSOA_ID" update="true" />
+			<property name="cpf" column="CPF" />
+			<property name="dataNascimento" column="DATA_NASCIMENTO" />
+		</joined-subclass>
+
+		<!-- Sub-Classe PessoaJuridica -->
+		<joined-subclass name="br.com.tg.entidades.PessoaJuridica"
+			table="PESSOA_JURIDICA" lazy="false">
+			<key column="PESSOA_ID" update="true" />
+			<property name="nomeFantasia" column="NOME_FANTASIA"
+				not-null="true" />
+			<property name="cnpj" column="CNPJ" not-null="true" />
+			<property name="dataAbertura" column="DATA_ABERTURA" />
+			<property name="diaFatura" column="DIA_FATURA" />
+		</joined-subclass>
+
+		<!-- Sub-Classe Usuario -->
+		<joined-subclass name="br.com.tg.entidades.Usuario"
+			table="USUARIO" lazy="false">
+			<key column="PESSOA_ID" update="true" />
+			<property name="login" column="LOGIN" not-null="true" />
+			<property name="senha" column="SENHA" not-null="true" />
+			<many-to-one name="tipoUsuario" column="TIPO_USUARIO_ID"
+				class="br.com.tg.entidades.TipoUsuario" cascade="save-update" update="true" lazy="false"/>
+		</joined-subclass>
+	</class>
+</hibernate-mapping>  

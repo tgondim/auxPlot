@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.FirebirdDialect
+		</property>
+		<property name="hibernate.connection.driver_class">
+			org.firebirdsql.jdbc.FBDriver
+		</property>
+		<property name="hibernate.connection.url">
+			jdbc:firebirdsql:localhost:auxPlot
+		</property>
+		<property name="hibernate.connection.username">
+			sysdba
+		</property>
+		<property name="hibernate.connection.password">
+			masterkey
+		</property>
+
+		<!-- Enable Hibernate's automatic session context management -->
+		<property name="current_session_context_class">thread</property>
+
+		<!-- Condiguração do c3p0 -->
+		<property name="hibernate.c3p0.max_size">10</property>
+		<property name="hibernate.c3p0.min_size">2</property>
+		<property name="hibernate.c3p0.timeout">5000</property>
+		<property name="hibernate.c3p0.max_statements">10</property>
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
+		<property name="hibernate.c3p0.acquire_increment">2</property>
+		
+		<!-- Configurações de debug -->
+		<property name="show_sql">true</property>
+		<property name="hibernate.generate_statistics">true</property>
+		<property name="hibernate.use_sql_comments">true</property>
+
+        <!-- Configurações das classes -->
+		<mapping resource="Pessoa.hmb.xml" />
+		<mapping resource="Endereco.hmb.xml" />
+		<mapping resource="Telefone.hmb.xml" />
+		<mapping resource="TipoTelefone.hmb.xml" />
+		<mapping resource="TipoPessoa.hmb.xml" />
+		<mapping resource="TipoUsuario.hmb.xml" />
+		<mapping resource="StatusPessoa.hmb.xml" />
+	</session-factory>
+</hibernate-configuration>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="br.com.tg.entidades.TipoPessoa" table="TIPO_PESSOA" lazy="false">
+		<id name="id" column="ID" unsaved-value="0">
+			<generator class="increment">
+				<param name="sequence">GEN_TIPO_PESSOA_ID</param>
+			</generator>
+		</id>
+		<property name="descricao" column="DESCRICAO" not-null="true"/>
+	</class>
+	
+</hibernate-mapping>  

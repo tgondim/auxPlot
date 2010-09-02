@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: br.com.tg.gui.auxPlot
+Class-Path: lib/antlr-2.7.6.jar lib/c3p0-0.9.1.jar lib/cglib-2.2.jar lib/commons-collections-3.1.jar
+lib/hibernate3.jar
